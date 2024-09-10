@@ -1,7 +1,6 @@
-// eslint-disable-next-line react/prop-types
 const ConsultationCard = ({ Icon, title }) => (
   <div className="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center">
-    {Icon && <Icon />}
+    {Icon}
     <h3 className="mt-4 text-lg font-semibold">{title}</h3>
   </div>
 );
@@ -48,11 +47,11 @@ const OnlineConsultation = () => (
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <ConsultationCard
-        icon={<VeterinarianIcon />}
+        Icon={<VeterinarianIcon />}
         title="Veterinarian video call"
       />
       <ConsultationCard
-        icon={<NutritionistIcon />}
+        Icon={<NutritionistIcon />}
         title="Nutritionist video call"
       />
     </div>
