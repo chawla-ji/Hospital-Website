@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Calendar,Clock } from "lucide-react";
+import Slider from "react-slick";
+import { Calendar, Clock } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image1 from "../assets/image1.jpg";
+import image2 from "../assets/image2.jpg";
+import image3 from "../assets/image3.jpg";
 
 export default function VetAppointmentPage() {
   const [formData, setFormData] = useState({
@@ -25,25 +31,46 @@ export default function VetAppointmentPage() {
     alert("Appointment request submitted!");
   };
 
+  const sliderSettings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
-      {/* Image Section */}
-      <div
-        className="lg:w-1/2 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://cdn.pixabay.com/photo/2018/12/26/09/16/vet-3895477_1280.jpg')",
-        }}
-      >
-        <div className="h-full w-full bg-blue-200 bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-4xl font-bold text-black text-center px-4">
-            Veterinary Care
-          </h1>
-        </div>
+      {/* Image Slider Section */}
+      <div className="lg:w-1/2 w-full hidden lg:block relative">
+        <Slider {...sliderSettings} className="h-full">
+          <div className="relative">
+            <img
+              src={image1}
+              alt="Veterinary Care 1"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="relative">
+            <img
+              src={image2}
+              alt="Veterinary Care 2"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="relative">
+            <img
+              src={image3}
+              alt="Veterinary Care 3"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </Slider>
       </div>
 
       {/* Form Section */}
-      <div className="lg:w-1/2 bg-[#f8f4f0] p-4 overflow-y-auto">
+      <div className="lg:w-1/2 w-full bg-orange p-8 overflow-y-auto">
         <div className="max-w-md mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-6">
             Book a Vet Appointment
@@ -63,8 +90,7 @@ export default function VetAppointmentPage() {
                 value={formData.ownerName}
                 onChange={handleChange}
                 required
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm 
-                focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               />
             </div>
             <div>
@@ -81,7 +107,7 @@ export default function VetAppointmentPage() {
                 value={formData.petName}
                 onChange={handleChange}
                 required
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               />
             </div>
             <div>
@@ -97,7 +123,7 @@ export default function VetAppointmentPage() {
                 value={formData.petType}
                 onChange={handleChange}
                 required
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               >
                 <option value="">Select pet type</option>
                 <option value="dog">Dog</option>
@@ -106,7 +132,7 @@ export default function VetAppointmentPage() {
                 <option value="other">Other</option>
               </select>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
               <div className="flex-1">
                 <label
                   htmlFor="appointmentDate"
@@ -122,10 +148,10 @@ export default function VetAppointmentPage() {
                     value={formData.appointmentDate}
                     onChange={handleChange}
                     required
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 p-2 focus:ring-opacity-50 pl-10"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 p-3 focus:ring-opacity-50 pl-10"
                   />
                   <Calendar
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
                     size={20}
                   />
                 </div>
@@ -144,7 +170,7 @@ export default function VetAppointmentPage() {
                     value={formData.appointmentTime}
                     onChange={handleChange}
                     required
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-10 p-2"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-10 p-3"
                   >
                     <option value="">Select time</option>
                     <option value="morning">Morning</option>
@@ -152,7 +178,7 @@ export default function VetAppointmentPage() {
                     <option value="evening">Evening</option>
                   </select>
                   <Clock
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
                     size={20}
                   />
                 </div>
@@ -172,12 +198,12 @@ export default function VetAppointmentPage() {
                 value={formData.reason}
                 onChange={handleChange}
                 required
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               />
             </div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Book Appointment
             </button>
